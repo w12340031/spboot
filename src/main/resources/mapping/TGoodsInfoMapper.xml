@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.spboot.dao.TGoodsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.spboot.model.TGoodsInfo" >
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="amout" property="amout" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.spboot.model.TGoodsInfo" >
+    insert into goods_info (name, code, amout, 
+      version)
+    values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{amout,jdbcType=INTEGER}, 
+      #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.spboot.model.TGoodsInfo" >
+    insert into goods_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="amout != null" >
+        amout,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="amout != null" >
+        #{amout,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateAmoutByVersion">
+    UPDATE goods_info SET amout = amout - #{buys} WHERE `code`= #{code} AND amout - #{buys}>0
+  </update>
+  <delete id="delete">
+    DELETE FROM goods_info WHERE code = #{code}
+  </delete>
+  <select id="getAmoutByCode" resultMap="BaseResultMap">
+    select name, code, amout,
+      version from goods_info where code = #{code}
+  </select>
+
+</mapper>
