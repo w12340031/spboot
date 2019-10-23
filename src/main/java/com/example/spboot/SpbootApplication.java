@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class SpbootApplication {
 
     public static void main(String[] args) {
-        System.out.println("V0.7");
+        System.out.println("V0.8");
         SpringApplication.run(SpbootApplication.class, args);
     }
 
