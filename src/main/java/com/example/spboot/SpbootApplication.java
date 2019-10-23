@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class SpbootApplication {
 
     public static void main(String[] args) {
-        System.out.println("v0.1");
+        System.out.println("v0.6 --branch lww");
         SpringApplication.run(SpbootApplication.class, args);
     }
 
